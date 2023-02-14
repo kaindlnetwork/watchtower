@@ -12,7 +12,8 @@ RUN apk add --no-cache \
     ca-certificates \
     git \
     tzdata \
-    curl
+    curl \
+    bash
 
 RUN git clone --branch "${WATCHTOWER_VERSION}" https://github.com/containrrr/watchtower.git
 
@@ -35,7 +36,7 @@ LABEL "com.centurylinklabs.watchtower"="true"
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 COPY --from=builder /usr/share/zoneinfo /usr/share/zoneinfo
 COPY --from=builder /usr/bin/curl /usr/bin/curl
-COPY --from=builder /bin/sh /bin/sh
+COPY --from=builder /bin/bash /bin/bash
 COPY --from=builder /go/watchtower/watchtower /watchtower
 
 ENTRYPOINT ["/watchtower"]
