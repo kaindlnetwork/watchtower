@@ -12,8 +12,7 @@ RUN apk add --no-cache \
     ca-certificates \
     git \
     tzdata \
-    curl \
-    sh
+    curl
 
 RUN git clone --branch "${WATCHTOWER_VERSION}" https://github.com/containrrr/watchtower.git
 
