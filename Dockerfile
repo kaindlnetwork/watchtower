@@ -35,7 +35,7 @@ LABEL "com.centurylinklabs.watchtower"="true"
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 COPY --from=builder /usr/share/zoneinfo /usr/share/zoneinfo
 COPY --from=builder /usr/bin/curl /usr/bin/curl
-COPY --from=builder /usr/bin/sh /usr/bin/sh
+COPY --from=builder /bin/sh /bin/sh
 COPY --from=builder /go/watchtower/watchtower /watchtower
 
 ENTRYPOINT ["/watchtower"]
