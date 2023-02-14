@@ -31,9 +31,10 @@ FROM scratch
 
 LABEL "com.centurylinklabs.watchtower"="true"
 
-# copy files from other container
+# copy files from other container, including curl
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 COPY --from=builder /usr/share/zoneinfo /usr/share/zoneinfo
+COPY --from=builder /usr/bin/curl /usr/bin/curl
 COPY --from=builder /go/watchtower/watchtower /watchtower
 
 ENTRYPOINT ["/watchtower"]
